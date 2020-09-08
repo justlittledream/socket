@@ -10,7 +10,7 @@ import (
 
 func main() {
 	// ip =  10.190.180.160
-	conn, err := net.Dial("tcp", "10.190.180.160:8888")
+	conn, err := net.Dial("tcp", "127.0.0.1:8888")
 	if err != nil {
 		fmt.Println("client connect failed = ", err)
 	}

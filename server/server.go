@@ -18,7 +18,7 @@ func process(conn net.Conn) {
 			return
 		}
 		if n == 0 || err != nil {
-			fmt.Println("出现不可预料的错误 = ", err)
+			fmt.Println("出现不可预料的错误,该客户断开了连接:", err)
 			break
 		}
 		fmt.Print(string(buf[:n]))
@@ -27,7 +27,7 @@ func process(conn net.Conn) {
 
 func main() {
 	fmt.Println("服务器开始监听……")
-	listen, err := net.Listen("tcp", "10.190.180.160:8888")
+	listen, err := net.Listen("tcp", "127.0.0.1:8888")
 	if err != nil {
 		fmt.Println("listen error = ", err)
 		return
