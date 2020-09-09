@@ -24,7 +24,7 @@ func main() {
 			fmt.Println("reader err = ", err)
 		}
 		s := strings.Trim(str, "\r\n")
-		_, err = conn.Write([]byte(str))
+		_, err = conn.Write([]byte(s))
 		if err != nil {
 			fmt.Println("write err = ", err)
 		}
@@ -32,6 +32,10 @@ func main() {
 			fmt.Println("客户端退出")
 			break
 		}
+		buf := make([]byte, 1024)
+		//fmt.Printf("服务器在等待%v的输入\n", conn.RemoteAddr().String())
+		n, err := conn.Read(buf)
+		fmt.Println("server:", string(buf[:n]))
 		//将输入法送给服务器端
 		//fmt.Printf("客户端发送了%d字节的数据\n", n)
 	}

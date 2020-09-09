@@ -18,10 +18,16 @@ func process(conn net.Conn) {
 			return
 		}
 		if n == 0 || err != nil {
-			fmt.Println("出现不可预料的错误,该客户断开了连接:", err)
+			fmt.Println("出现不可预料的错误:", err)
 			break
 		}
-		fmt.Print(string(buf[:n]))
+		//在服务端输出
+		//fmt.Print(string(buf[:n]))
+		//重新发回给客户端
+		_, err = conn.Write(buf[:n])
+		if err != nil {
+			fmt.Println("write err = ", err)
+		}
 	}
 }
 
